@@ -1,9 +1,9 @@
 const pg = require('pg')
 
 class Pool {
-	_pool = null
+	_pool: any = null
 
-	connect(options) {
+	connect(options: any) {
 		this._pool = new pg.Pool(options)
 		return this._pool.query('SELECT 1 + 1')
 	}
@@ -12,7 +12,7 @@ class Pool {
 		return this._pool.end()
 	}
 
-	query(sql, params) {
+	query(sql: any, params: any) {
 		return this._pool.query(sql, params)
 	}
 }

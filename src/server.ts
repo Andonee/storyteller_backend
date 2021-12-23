@@ -1,5 +1,5 @@
-const app = require('./src/app')
-const pool = require('./src/pool')
+const app = require('./setup/app')
+const pool = require('./utils/pool')
 require('dotenv').config()
 
 const PORT = process.env.PORT || 5000
@@ -17,4 +17,4 @@ pool
 			console.log(`Listening on port ${PORT}`)
 		})
 	})
-	.catch(err => console.log(err))
+	.catch((err: any) => console.log(err))
