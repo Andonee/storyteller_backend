@@ -43,7 +43,7 @@ const initialize = passport => {
 
 	const jwtOptions = {
 		jwtFromRequest: ExtractJwt.fromHeader('authorization'),
-		secretOrKey: config.secret,
+		secretOrKey: process.env.SECRET_KEY,
 	}
 
 	const jwtLogin = new JwtStrategy(jwtOptions, async (payload, done) => {

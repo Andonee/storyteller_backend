@@ -13,9 +13,13 @@ import {
 const tokenGenerator = (user: IUserProps[]) => {
 	const timestamp = new Date().getTime()
 
-	return jwt.sign({ sub: user[0].login, iat: timestamp }, config.secret, {
-		expiresIn: '1h',
-	})
+	return jwt.sign(
+		{ sub: user[0].login, iat: timestamp },
+		process.env.SECRET_KEY,
+		{
+			expiresIn: '1h',
+		}
+	)
 }
 
 const signUp = async (req: Request, res: Response) => {
