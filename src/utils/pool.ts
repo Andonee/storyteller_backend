@@ -18,3 +18,6 @@ class Pool {
 }
 
 module.exports = new Pool()
+// const pool = new Pool()
+
+// export default pool

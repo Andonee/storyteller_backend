@@ -20,7 +20,7 @@ module.exports = () => {
 
 	app.use(passport.initialize())
 
-	app.use('/', router)
+	app.use('/api/v1/', router)
 
 	return app
 }
