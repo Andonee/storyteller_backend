@@ -26,12 +26,12 @@ export interface IBodyMapProps {
 }
 
 export interface IBodyPlaceProps {
-	map_id: number
 	place: string
 	description: string
-	photos: string[]
-	video: string[]
-	link: string[]
+	photo: any
+	video: any
+	link: any
 	coords: any
 	type: string
+	place_id?: number
 }

@@ -18,6 +18,8 @@ router.post('/:userID/maps', requireAuth, Maps.createMap)
 router.delete('/:userID/maps/:mapID', requireAuth, Maps.removeMap)
 router.patch('/:userID/maps/:mapID', requireAuth, Maps.updateMap)
 
-router.post('/userID/maps/:mapID', requireAuth, Maps.createPlace)
+router.post('/:userID/maps/:mapID/places', requireAuth, Maps.createPlace)
+router.delete('/:userID/maps/:mapID/places', requireAuth, Maps.removePlace)
+router.patch('/:userID/maps/:mapID/places', requireAuth, Maps.updatePlace)
 
 export default router

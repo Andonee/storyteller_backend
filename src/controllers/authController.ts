@@ -48,7 +48,8 @@ const signUp = async (req: Request, res: Response) => {
 			'INSERT INTO users (login, password) VALUES ($1, $2) RETURNING *;',
 			[login, hashedPassword]
 		)
-		res.send({ token: tokenGenerator(newUser) })
+
+		res.send({ token: tokenGenerator(newUser.rows[0].login) })
 	} catch (error) {
 		res.send({ errorMessage: 'Something went wrong', error })
 	}
