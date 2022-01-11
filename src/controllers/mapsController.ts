@@ -14,9 +14,11 @@ const getMaps = async (req: Request, res: Response) => {
 			userID,
 		])
 
-		res.send(allMaps)
+		res.status(200).send(allMaps)
 	} catch (error) {
-		res.send({ errorMessage: 'Something went very wrong and I am sad', error })
+		res
+			.status(404)
+			.send({ errorMessage: 'Something went very wrong and I am sad', error })
 	}
 }
 
@@ -80,9 +82,9 @@ const getMap = async (req: Request, res: Response) => {
 			links: links.rows,
 		}
 
-		res.send(map)
+		res.status(200).send(map)
 	} catch (error) {
-		res.send({
+		res.status(404).send({
 			errorMessage: 'Could not fetch a map, some error occured',
 			error,
 		})
@@ -107,9 +109,9 @@ const createMap = async (req: Request, res: Response) => {
 			[newMapID]
 		)
 
-		res.send({ message: 'New map created' })
+		res.status(201).send({ message: 'New map created' })
 	} catch (error) {
-		res.send({ errorMessage: 'Could not create a new map', error })
+		res.status(404).send({ errorMessage: 'Could not create a new map', error })
 	}
 }
 
@@ -122,9 +124,9 @@ const removeMap = async (req: Request, res: Response) => {
 			[userID, mapID]
 		)
 
-		res.send(removedMap)
+		res.status(200).send(removedMap)
 	} catch (error) {
-		res.send({ errorMessage: 'Could not remove the map', error })
+		res.status(404).send({ errorMessage: 'Could not remove the map', error })
 	}
 }
 
@@ -147,10 +149,10 @@ const updateMap = async (req: Request, res: Response) => {
 			[title, description, font, panel_color, icons, panel_position, mapID]
 		)
 
-		res.send(updatedMap)
+		res.status(200).send(updatedMap)
 	} catch (error: any) {
 		console.log(error)
-		res.send({ errorMessage: 'Could not updated the map', error })
+		res.status(404).send({ errorMessage: 'Could not updated the map', error })
 	}
 }
 
@@ -159,8 +161,6 @@ const createPlace = async (req: Request, res: Response) => {
 	const body: IBodyPlaceProps = req.body
 
 	const { place, description, photo, video, link, coords, type } = body
-
-	console.log(photo, video, link)
 
 	try {
 		const newPlace = await pool.query(
@@ -213,9 +213,11 @@ const createPlace = async (req: Request, res: Response) => {
 			)
 		}
 
-		res.send('New place created')
+		res.status(200).send('New place created')
 	} catch (error) {
-		res.send({ errorMessage: 'Could not create a new place', error })
+		res
+			.status(404)
+			.send({ errorMessage: 'Could not create a new place', error })
 	}
 }
 
@@ -232,9 +234,11 @@ const removePlace = async (req: Request, res: Response) => {
 			body.place_id,
 			mapID,
 		])
-		res.send('Removed')
+		res.status(200).send('Removed')
 	} catch (error) {
-		res.send({ errorMessage: 'Could not remove the place object', error })
+		res
+			.status(404)
+			.send({ errorMessage: 'Could not remove the place object', error })
 	}
 }
 
@@ -284,9 +288,9 @@ const updatePlace = async (req: Request, res: Response) => {
 			)
 		}
 
-		res.send('Place updated')
+		res.status(200).send('Place updated')
 	} catch (error) {
-		res.send({ errorMessage: 'Could not update the place', error })
+		res.status(404).send({ errorMessage: 'Could not update the place', error })
 	}
 }
 
